@@ -12,6 +12,17 @@ struct Foglalas {
     int kezd_ido; // Kezdési időpont (óra 0-tól 23-ig)
     int veg_ido;  // Befejezési időpont (óra 0-tól 23-ig)
 };
+
+bool utkozik(const Foglalas& uj_foglalas, const vector<Foglalas>& foglalasok) {
+    for (const auto &foglalas: foglalasok) {
+        if (foglalas.terem_szam == uj_foglalas.terem_szam && foglalas.nap == uj_foglalas.nap) {
+            if ((uj_foglalas.kezd_ido < foglalas.veg_ido && uj_foglalas.veg_ido > foglalas.kezd_ido)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 // Új teremfoglalás hozzáadása
 void uj_foglalas(vector<Foglalas>& foglalasok) {
     Foglalas uj_foglalas;
@@ -31,6 +42,12 @@ void uj_foglalas(vector<Foglalas>& foglalasok) {
     if (uj_foglalas.kezd_ido >= uj_foglalas.veg_ido) {
         cout << "Hiba: A kezdési időpont nem lehet nagyobb vagy egyenlő a befejezési időpontnal.\n";
         return;
+    }
+    if (utkozik(uj_foglalas, foglalasok)) {
+        cout << "Hiba: Utkozes van a teremfoglalások kozott.\n";
+    } else {
+        foglalasok.push_back(uj_foglalas);
+        cout << "Foglalas sikeresen hozzaadva.\n";
     }
 }
 
