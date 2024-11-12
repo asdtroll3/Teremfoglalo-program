@@ -51,8 +51,31 @@ void uj_foglalas(vector<Foglalas>& foglalasok) {
     }
 }
 
+
 int main() {
     vector<Foglalas> foglalasok;
-    uj_foglalas(foglalasok);
-    return 0;
+    int valasz;
+
+    while (true) {
+        cout << "\nTeremfoglalasi rendszer - valasszon opciot:\n";
+        cout << "1. Uj teremfoglalas\n";
+        cout << "2. Foglalasok megjelenitese\n";
+        cout << "3. Kilepes\n";
+        cout << "Valasz: ";
+        cin >> valasz;
+
+        switch (valasz) {
+            case 1:
+                uj_foglalas(foglalasok);
+                break;
+            case 2:
+                mutat_foglalasok(foglalasok);
+                break;
+            case 3:
+                cout << "Kilepes...\n";
+                return 0;
+            default:
+                cout << "Hibas valasztas, probalja ujra.\n";
+        }
+    }
 }
