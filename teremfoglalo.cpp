@@ -26,21 +26,21 @@ bool utkozik(const Foglalas& uj_foglalas, const vector<Foglalas>& foglalasok) {
 // Új teremfoglalás hozzáadása
 void uj_foglalas(vector<Foglalas>& foglalasok) {
     Foglalas uj_foglalas;
-    cout << "Tanár neve: ";
+    cout << "Tanar neve: ";
     cin >> uj_foglalas.tanar_neve;
-    cout << "Tantárgy neve: ";
+    cout << "Tantargy neve: ";
     cin >> uj_foglalas.tantargy;
-    cout << "Terem száma: ";
+    cout << "Terem szama: ";
     cin >> uj_foglalas.terem_szam;
-    cout << "Nap (1-Hétfő, 2-Kedd, ..., 7-Vasárnap): ";
+    cout << "Nap (1-Hetfo, 2-Kedd, ..., 7-Vasarnap): ";
     cin >> uj_foglalas.nap;
-    cout << "Kezdési idő (0-23): ";
+    cout << "Kezdesi ido (0-23): ";
     cin >> uj_foglalas.kezd_ido;
-    cout << "Befejezési idő (0-23): ";
+    cout << "Befejezesi ido (0-23): ";
     cin >> uj_foglalas.veg_ido;
 
     if (uj_foglalas.kezd_ido >= uj_foglalas.veg_ido) {
-        cout << "Hiba: A kezdési időpont nem lehet nagyobb vagy egyenlő a befejezési időpontnal.\n";
+        cout << "Hiba: A kezdési idopont nem lehet nagyobb vagy egyenlo a befejezési idopontnal.\n";
         return;
     }
     if (utkozik(uj_foglalas, foglalasok)) {
@@ -49,12 +49,13 @@ void uj_foglalas(vector<Foglalas>& foglalasok) {
         foglalasok.push_back(uj_foglalas);
         cout << "Foglalas sikeresen hozzaadva.\n";
     }
+}
 
 //meglévő foglalások részleteinek kilistázása
 void mutat_foglalasok(vector<Foglalas> foglalasok) {
     cout << ("\n\t\t Lefoglalt termek");
     cout << ("\n\t\t ----------------\n\n");
-    
+
     if (foglalasok.empty())
         cout << "Jelenleg nincsenek lefoglalt termek\n";
     else {
@@ -65,8 +66,9 @@ void mutat_foglalasok(vector<Foglalas> foglalasok) {
             cout << ("Kezdesi idopont: " + to_string(a.kezd_ido) + "\n");
             cout << ("Befejezesi idopont: " + to_string(a.veg_ido) + "\n");
             cout << ("----------------------------------------\n");
+        }
+    }
 }
-
 
 int main() {
     vector<Foglalas> foglalasok;
