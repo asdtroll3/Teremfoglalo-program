@@ -1,6 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -8,34 +8,32 @@ struct Foglalas {
     string tanar_neve;
     string tantargy;
     int terem_szam;
-    int nap; // 1 - Hétfő, 2 - Kedd, ..., 7 - Vasárnap
-    int kezd_ido; // Kezdési időpont (óra 0-tól 23-ig)
-    int veg_ido;  // Befejezési időpont (óra 0-tól 23-ig)
+    int nap;
+    int kezd_ido;
+    int veg_ido;
 };
-// Új teremfoglalás hozzáadása
-void uj_foglalas(vector<Foglalas>& foglalasok) {
-    Foglalas uj_foglalas;
-    cout << "Tanár neve: ";
-    cin >> uj_foglalas.tanar_neve;
-    cout << "Tantárgy neve: ";
-    cin >> uj_foglalas.tantargy;
-    cout << "Terem száma: ";
-    cin >> uj_foglalas.terem_szam;
-    cout << "Nap (1-Hétfő, 2-Kedd, ..., 7-Vasárnap): ";
-    cin >> uj_foglalas.nap;
-    cout << "Kezdési idő (0-23): ";
-    cin >> uj_foglalas.kezd_ido;
-    cout << "Befejezési idő (0-23): ";
-    cin >> uj_foglalas.veg_ido;
 
-    if (uj_foglalas.kezd_ido >= uj_foglalas.veg_ido) {
-        cout << "Hiba: A kezdési időpont nem lehet nagyobb vagy egyenlő a befejezési időpontnal.\n";
-        return;
+//meglévő foglalások részleteinek kilistázása
+void mutat_foglalasok(vector<Foglalas> foglalasok) {
+    cout << ("\n\t\t Lefoglalt termek");
+    cout << ("\n\t\t ----------------\n\n");
+    
+    if (foglalasok.empty())
+        cout << "Jelenleg nincsenek lefoglalt termek\n";
+    else {
+        for (auto& a : foglalasok) {
+            cout << ("Tanar neve: " + a.tanar_neve + "\n");
+            cout << ("Tantargy: " + a.tantargy + "\n");
+            cout << ("Nap: " + to_string(a.nap) + "\n");
+            cout << ("Kezdesi idopont: " + to_string(a.kezd_ido) + "\n");
+            cout << ("Befejezesi idopont: " + to_string(a.veg_ido) + "\n");
+            cout << ("----------------------------------------\n");
+        }
     }
 }
 
-int main() {
+int main()
+{
     vector<Foglalas> foglalasok;
-    uj_foglalas(foglalasok);
-    return 0;
+    mutat_foglalasok(foglalasok);
 }
