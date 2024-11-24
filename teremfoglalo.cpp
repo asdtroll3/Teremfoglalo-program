@@ -1,20 +1,24 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <bits/stdc++.h>
 
 using namespace std;
+int keys=0;
 
 struct Foglalas {
+    int key;
     string tanar_neve;
     string tantargy;
     int terem_szam;
-    int nap; // 1 - Hétfő, 2 - Kedd, ..., 7 - Vasárnap
-    int kezd_ido; // Kezdési időpont (óra 0-tól 23-ig)
-    int veg_ido;  // Befejezési időpont (óra 0-tól 23-ig)
+    int nap; // 1 - Hétfõ, 2 - Kedd, ..., 7 - Vasárnap
+    int kezd_ido; // Kezdési idõpont (óra 0-tól 23-ig)
+    int veg_ido;  // Befejezési idõpont (óra 0-tól 23-ig)
 };
 
+// Ellenõrzi, hogy van-e ütközés a foglalások között
 bool utkozik(const Foglalas& uj_foglalas, const vector<Foglalas>& foglalasok) {
-    for (const auto &foglalas: foglalasok) {
+    for (const auto& foglalas : foglalasok) {
         if (foglalas.terem_szam == uj_foglalas.terem_szam && foglalas.nap == uj_foglalas.nap) {
             if ((uj_foglalas.kezd_ido < foglalas.veg_ido && uj_foglalas.veg_ido > foglalas.kezd_ido)) {
                 return true;
@@ -23,6 +27,7 @@ bool utkozik(const Foglalas& uj_foglalas, const vector<Foglalas>& foglalasok) {
     }
     return false;
 }
+
 // Új teremfoglalás hozzáadása
 void uj_foglalas(vector<Foglalas>& foglalasok) {
     Foglalas uj_foglalas;
@@ -40,35 +45,56 @@ void uj_foglalas(vector<Foglalas>& foglalasok) {
     cin >> uj_foglalas.veg_ido;
 
     if (uj_foglalas.kezd_ido >= uj_foglalas.veg_ido) {
-        cout << "Hiba: A kezdési idopont nem lehet nagyobb vagy egyenlo a befejezési idopontnal.\n";
+        cout << "Hiba: A kezdesi idopont nem lehet nagyobb vagy egyenlo a befejezesi idopontnal.\n";
         return;
     }
+
     if (utkozik(uj_foglalas, foglalasok)) {
         cout << "Hiba: Utkozes van a teremfoglalások kozott.\n";
     } else {
+        keys++;
+        uj_foglalas.key=keys;
         foglalasok.push_back(uj_foglalas);
         cout << "Foglalas sikeresen hozzaadva.\n";
     }
 }
 
-//meglévő foglalások részleteinek kilistázása
-void mutat_foglalasok(vector<Foglalas> foglalasok) {
-    cout << ("\n\t\t Lefoglalt termek");
-    cout << ("\n\t\t ----------------\n\n");
+// Teremfoglalások megjelenítése
+void mutat_foglalasok(const vector<Foglalas>& foglalasok) {
+    if (foglalasok.empty()) {
+        cout << "Nincsenek jelenlegi foglalasok.\n";
+        return;
+    }
 
-    if (foglalasok.empty())
-        cout << "Jelenleg nincsenek lefoglalt termek\n";
-    else {
-        for (auto& a : foglalasok) {
-            cout << ("Tanar neve: " + a.tanar_neve + "\n");
-            cout << ("Tantargy: " + a.tantargy + "\n");
-            cout << ("Nap: " + to_string(a.nap) + "\n");
-            cout << ("Kezdesi idopont: " + to_string(a.kezd_ido) + "\n");
-            cout << ("Befejezesi idopont: " + to_string(a.veg_ido) + "\n");
-            cout << ("----------------------------------------\n");
-        }
+    for (const auto& foglalas : foglalasok) {
+        cout << "Foglalas kulcs: " << foglalas.key
+             << ", Tanar: " << foglalas.tanar_neve
+             << ", Tantargy: " << foglalas.tantargy
+             << ", Terem: " << foglalas.terem_szam
+             << ", Nap: " << foglalas.nap
+             << ", Kezdes: " << foglalas.kezd_ido
+             << ", Befejezes: " << foglalas.veg_ido << "\n";
     }
 }
+
+void torol_foglalas(vector<Foglalas>& foglalasok) {
+    int deletekey;
+
+    cout << "Adja meg a torlendo foglalas kulcsat:\n";
+    cin >> deletekey;
+
+    auto it = find_if(foglalasok.begin(), foglalasok.end(), [&](const Foglalas& foglalas) {
+        return foglalas.key == deletekey;
+        });
+
+    if (it != foglalasok.end()) {
+        foglalasok.erase(it);
+        cout << "Foglalas sikeresen torolve.\n";
+    } else {
+        cout << "Nincs ilyen foglalas.\n";
+    }
+}
+
 
 int main() {
     vector<Foglalas> foglalasok;
@@ -78,7 +104,8 @@ int main() {
         cout << "\nTeremfoglalasi rendszer - valasszon opciot:\n";
         cout << "1. Uj teremfoglalas\n";
         cout << "2. Foglalasok megjelenitese\n";
-        cout << "3. Kilepes\n";
+        cout << "3. Foglalasok torlese\n";
+        cout << "4. Kilepes\n";
         cout << "Valasz: ";
         cin >> valasz;
 
@@ -90,6 +117,9 @@ int main() {
                 mutat_foglalasok(foglalasok);
                 break;
             case 3:
+                torol_foglalas(foglalasok);
+                break;
+            case 4:
                 cout << "Kilepes...\n";
                 return 0;
             default:
