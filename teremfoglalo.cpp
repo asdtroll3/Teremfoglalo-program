@@ -138,6 +138,108 @@ void szerkeszt_foglalas(vector<Foglalas>& foglalasok) {
     }
 }
 
+//Szures
+void szures_foglalasok(const vector<Foglalas>& foglalasok) {
+    int szuro_opcio;
+    cout << "Szuro opcio:\n1. Tanar szerint\n2. Tantargy szerint\n3. Terem szerint\n4. Nap szerint\n5. Kezdesi ido szerint\n6. Befejezesi ido szerint\nValasztas: ";
+    cin >> szuro_opcio;
+
+    if (szuro_opcio == 1) {
+        string tanar;
+        cout << "Adja meg a tanar nevet: ";
+        cin >> tanar;
+        for (const auto& foglalas : foglalasok) {
+            if (foglalas.tanar_neve == tanar) {
+                cout << "Foglalas kulcs: " << foglalas.key
+                << ", Tanar: " << foglalas.tanar_neve
+                << ", Tantargy: " << foglalas.tantargy
+                << ", Terem: " << foglalas.terem_szam
+                << ", Nap: " << foglalas.nap
+                << ", Kezdes: " << foglalas.kezd_ido
+                << ", Befejezes: " << foglalas.veg_ido << "\n";
+            }
+        }
+    }else if (szuro_opcio == 2) {
+        string tantargy;
+        cout << "Adja meg a tantargy nevet: ";
+        cin >> tantargy;
+        for (const auto& foglalas : foglalasok) {
+            if (foglalas.tantargy == tantargy) {
+                cout << "Foglalas kulcs: " << foglalas.key
+                << ", Tanar: " << foglalas.tanar_neve
+                << ", Tantargy: " << foglalas.tantargy
+                << ", Terem: " << foglalas.terem_szam
+                << ", Nap: " << foglalas.nap
+                << ", Kezdes: " << foglalas.kezd_ido
+                << ", Befejezes: " << foglalas.veg_ido << "\n";
+            }
+        }
+    }else if (szuro_opcio == 3) {
+        int terem;
+        cout << "Adja meg a terem szamat: ";
+        cin >> terem;
+        for (const auto& foglalas : foglalasok) {
+            if (foglalas.terem_szam == terem) {
+                cout << "Foglalas kulcs: " << foglalas.key
+                << ", Tanar: " << foglalas.tanar_neve
+                << ", Tantargy: " << foglalas.tantargy
+                << ", Terem: " << foglalas.terem_szam
+                << ", Nap: " << foglalas.nap
+                << ", Kezdes: " << foglalas.kezd_ido
+                << ", Befejezes: " << foglalas.veg_ido << "\n";
+            }
+        }
+    }else if (szuro_opcio == 4) {
+        int nap;
+        cout << "Adja meg a napot (1-Hetfo, ..., 7-Vasarnap): ";
+        cin >> nap;
+        for (const auto& foglalas : foglalasok) {
+            if (foglalas.nap == nap) {
+                cout << "Foglalas kulcs: " << foglalas.key
+                << ", Tanar: " << foglalas.tanar_neve
+                << ", Tantargy: " << foglalas.tantargy
+                << ", Terem: " << foglalas.terem_szam
+                << ", Nap: " << foglalas.nap
+                << ", Kezdes: " << foglalas.kezd_ido
+                << ", Befejezes: " << foglalas.veg_ido << "\n";
+            }
+        }
+    }else if (szuro_opcio == 5) {
+        int kezd_ido;
+        cout << "Adja meg a kezdesi idot: ";
+        cin >> kezd_ido;
+        for (const auto& foglalas : foglalasok) {
+            if (foglalas.kezd_ido == kezd_ido) {
+                cout << "Foglalas kulcs: " << foglalas.key
+                << ", Tanar: " << foglalas.tanar_neve
+                << ", Tantargy: " << foglalas.tantargy
+                << ", Terem: " << foglalas.terem_szam
+                << ", Nap: " << foglalas.nap
+                << ", Kezdes: " << foglalas.kezd_ido
+                << ", Befejezes: " << foglalas.veg_ido << "\n";
+            }
+        }
+    }else if (szuro_opcio == 6) {
+        int veg_ido;
+        cout << "Adja meg a vegzesi idot: ";
+        cin >> veg_ido;
+        for (const auto& foglalas : foglalasok) {
+            if (foglalas.veg_ido == veg_ido) {
+                cout << "Foglalas kulcs: " << foglalas.key
+                << ", Tanar: " << foglalas.tanar_neve
+                << ", Tantargy: " << foglalas.tantargy
+                << ", Terem: " << foglalas.terem_szam
+                << ", Nap: " << foglalas.nap
+                << ", Kezdes: " << foglalas.kezd_ido
+                << ", Befejezes: " << foglalas.veg_ido << "\n";
+            }
+        }
+    }
+    else {
+        cout << "Hibas valasztas.\n";
+    }
+}
+
 int main() {
     vector<Foglalas> foglalasok;
     int valasz;
