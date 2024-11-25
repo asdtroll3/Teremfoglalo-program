@@ -95,6 +95,48 @@ void torol_foglalas(vector<Foglalas>& foglalasok) {
     }
 }
 
+//Foglalas szerkesztese
+void szerkeszt_foglalas(vector<Foglalas>& foglalasok) {
+    int editkey;
+
+    cout << "Adja meg a szerkesztendo foglalas kulcsat:\n";
+    cin >> editkey;
+
+    auto it = find_if(foglalasok.begin(), foglalasok.end(), [&](const Foglalas& foglalas) {
+        return foglalas.key == editkey;
+    });
+
+    if (it != foglalasok.end()) {
+        Foglalas& foglalas = *it;
+        cout << "Adja meg az uj adatokat:\n";
+        cout << "Uj tanar neve: ";
+        cin >> foglalas.tanar_neve;
+        cout << "Uj tantargy neve: ";
+        cin >> foglalas.tantargy;
+        cout << "Uj terem szama: ";
+        cin >> foglalas.terem_szam;
+        cout << "Uj nap szama: ";
+        cin >> foglalas.nap;
+        cout << "Uj kezdesi ido (0-23): ";
+        cin >> foglalas.kezd_ido;
+        cout << "Uj befejezesi ido (0-23): ";
+        cin >> foglalas.veg_ido;
+
+        if (foglalas.kezd_ido >= foglalas.veg_ido) {
+            cout << "Hiba: A kezdesi idopont nem lehet nagyobb vagy egyenlo a befejezesi idopontnal.\n";
+            return;
+        }
+
+        if (utkozik(foglalas, foglalasok)) {
+            cout << "Hiba: Az uj adatok utkoznek egy masik foglalassal.\n";
+        } else {
+            cout << "Foglalas sikeresen szerkesztve.\n";
+        }
+    } else {
+        cout << "Nincs ilyen foglalas.\n";
+    }
+}
+
 //Szures
 void szures_foglalasok(const vector<Foglalas>& foglalasok) {
     int szuro_opcio;
