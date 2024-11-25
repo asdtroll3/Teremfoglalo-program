@@ -77,6 +77,7 @@ void mutat_foglalasok(const vector<Foglalas>& foglalasok) {
     }
 }
 
+//Foglalas torlese
 void torol_foglalas(vector<Foglalas>& foglalasok) {
     int deletekey;
 
@@ -247,8 +248,9 @@ int main() {
         cout << "\nTeremfoglalasi rendszer - valasszon opciot:\n";
         cout << "1. Uj teremfoglalas\n";
         cout << "2. Foglalasok megjelenitese\n";
-        cout << "3. Foglalasok torlese\n";
-        cout << "4. Kilepes\n";
+        cout << "3. Foglalas torlese\n";
+        cout << "4. Foglalas szerkesztese\n";
+        cout << "5. Kilepes\n";
         cout << "Valasz: ";
         cin >> valasz;
 
@@ -263,6 +265,9 @@ int main() {
                 torol_foglalas(foglalasok);
                 break;
             case 4:
+                szerkeszt_foglalas(foglalasok);
+                break;
+            case 5:
                 cout << "Kilepes...\n";
                 return 0;
             default:
