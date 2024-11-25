@@ -77,6 +77,7 @@ void mutat_foglalasok(const vector<Foglalas>& foglalasok) {
     }
 }
 
+//Foglalas torlese
 void torol_foglalas(vector<Foglalas>& foglalasok) {
     int deletekey;
 
@@ -95,6 +96,47 @@ void torol_foglalas(vector<Foglalas>& foglalasok) {
     }
 }
 
+//Foglalas szerkesztese
+void szerkeszt_foglalas(vector<Foglalas>& foglalasok) {
+    int editkey;
+
+    cout << "Adja meg a szerkesztendo foglalas kulcsat:\n";
+    cin >> editkey;
+
+    auto it = find_if(foglalasok.begin(), foglalasok.end(), [&](const Foglalas& foglalas) {
+        return foglalas.key == editkey;
+    });
+
+    if (it != foglalasok.end()) {
+        Foglalas& foglalas = *it;
+        cout << "Adja meg az uj adatokat:\n";
+        cout << "Uj tanar neve: ";
+        cin >> foglalas.tanar_neve;
+        cout << "Uj tantargy neve: ";
+        cin >> foglalas.tantargy;
+        cout << "Uj terem szama: ";
+        cin >> foglalas.terem_szam;
+        cout << "Uj nap szama: ";
+        cin >> foglalas.nap;
+        cout << "Uj kezdesi ido (0-23): ";
+        cin >> foglalas.kezd_ido;
+        cout << "Uj befejezesi ido (0-23): ";
+        cin >> foglalas.veg_ido;
+
+        if (foglalas.kezd_ido >= foglalas.veg_ido) {
+            cout << "Hiba: A kezdesi idopont nem lehet nagyobb vagy egyenlo a befejezesi idopontnal.\n";
+            return;
+        }
+
+        if (utkozik(foglalas, foglalasok)) {
+            cout << "Hiba: Az uj adatok utkoznek egy masik foglalassal.\n";
+        } else {
+            cout << "Foglalas sikeresen szerkesztve.\n";
+        }
+    } else {
+        cout << "Nincs ilyen foglalas.\n";
+    }
+}
 
 int main() {
     vector<Foglalas> foglalasok;
@@ -104,8 +146,9 @@ int main() {
         cout << "\nTeremfoglalasi rendszer - valasszon opciot:\n";
         cout << "1. Uj teremfoglalas\n";
         cout << "2. Foglalasok megjelenitese\n";
-        cout << "3. Foglalasok torlese\n";
-        cout << "4. Kilepes\n";
+        cout << "3. Foglalas torlese\n";
+        cout << "4. Foglalas szerkesztese\n";
+        cout << "5. Kilepes\n";
         cout << "Valasz: ";
         cin >> valasz;
 
@@ -120,6 +163,9 @@ int main() {
                 torol_foglalas(foglalasok);
                 break;
             case 4:
+                szerkeszt_foglalas(foglalasok);
+                break;
+            case 5:
                 cout << "Kilepes...\n";
                 return 0;
             default:
