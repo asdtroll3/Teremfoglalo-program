@@ -86,7 +86,7 @@ void torol_foglalas(vector<Foglalas>& foglalasok) {
 
     auto it = find_if(foglalasok.begin(), foglalasok.end(), [&](const Foglalas& foglalas) {
         return foglalas.key == deletekey;
-        });
+    });
 
     if (it != foglalasok.end()) {
         foglalasok.erase(it);
@@ -151,12 +151,12 @@ void szures_foglalasok(const vector<Foglalas>& foglalasok) {
         for (const auto& foglalas : foglalasok) {
             if (foglalas.tanar_neve == tanar) {
                 cout << "Foglalas kulcs: " << foglalas.key
-                << ", Tanar: " << foglalas.tanar_neve
-                << ", Tantargy: " << foglalas.tantargy
-                << ", Terem: " << foglalas.terem_szam
-                << ", Nap: " << foglalas.nap
-                << ", Kezdes: " << foglalas.kezd_ido
-                << ", Befejezes: " << foglalas.veg_ido << "\n";
+                     << ", Tanar: " << foglalas.tanar_neve
+                     << ", Tantargy: " << foglalas.tantargy
+                     << ", Terem: " << foglalas.terem_szam
+                     << ", Nap: " << foglalas.nap
+                     << ", Kezdes: " << foglalas.kezd_ido
+                     << ", Befejezes: " << foglalas.veg_ido << "\n";
             }
         }
     }else if (szuro_opcio == 2) {
@@ -166,12 +166,12 @@ void szures_foglalasok(const vector<Foglalas>& foglalasok) {
         for (const auto& foglalas : foglalasok) {
             if (foglalas.tantargy == tantargy) {
                 cout << "Foglalas kulcs: " << foglalas.key
-                << ", Tanar: " << foglalas.tanar_neve
-                << ", Tantargy: " << foglalas.tantargy
-                << ", Terem: " << foglalas.terem_szam
-                << ", Nap: " << foglalas.nap
-                << ", Kezdes: " << foglalas.kezd_ido
-                << ", Befejezes: " << foglalas.veg_ido << "\n";
+                     << ", Tanar: " << foglalas.tanar_neve
+                     << ", Tantargy: " << foglalas.tantargy
+                     << ", Terem: " << foglalas.terem_szam
+                     << ", Nap: " << foglalas.nap
+                     << ", Kezdes: " << foglalas.kezd_ido
+                     << ", Befejezes: " << foglalas.veg_ido << "\n";
             }
         }
     }else if (szuro_opcio == 3) {
@@ -181,12 +181,12 @@ void szures_foglalasok(const vector<Foglalas>& foglalasok) {
         for (const auto& foglalas : foglalasok) {
             if (foglalas.terem_szam == terem) {
                 cout << "Foglalas kulcs: " << foglalas.key
-                << ", Tanar: " << foglalas.tanar_neve
-                << ", Tantargy: " << foglalas.tantargy
-                << ", Terem: " << foglalas.terem_szam
-                << ", Nap: " << foglalas.nap
-                << ", Kezdes: " << foglalas.kezd_ido
-                << ", Befejezes: " << foglalas.veg_ido << "\n";
+                     << ", Tanar: " << foglalas.tanar_neve
+                     << ", Tantargy: " << foglalas.tantargy
+                     << ", Terem: " << foglalas.terem_szam
+                     << ", Nap: " << foglalas.nap
+                     << ", Kezdes: " << foglalas.kezd_ido
+                     << ", Befejezes: " << foglalas.veg_ido << "\n";
             }
         }
     }else if (szuro_opcio == 4) {
@@ -196,12 +196,12 @@ void szures_foglalasok(const vector<Foglalas>& foglalasok) {
         for (const auto& foglalas : foglalasok) {
             if (foglalas.nap == nap) {
                 cout << "Foglalas kulcs: " << foglalas.key
-                << ", Tanar: " << foglalas.tanar_neve
-                << ", Tantargy: " << foglalas.tantargy
-                << ", Terem: " << foglalas.terem_szam
-                << ", Nap: " << foglalas.nap
-                << ", Kezdes: " << foglalas.kezd_ido
-                << ", Befejezes: " << foglalas.veg_ido << "\n";
+                     << ", Tanar: " << foglalas.tanar_neve
+                     << ", Tantargy: " << foglalas.tantargy
+                     << ", Terem: " << foglalas.terem_szam
+                     << ", Nap: " << foglalas.nap
+                     << ", Kezdes: " << foglalas.kezd_ido
+                     << ", Befejezes: " << foglalas.veg_ido << "\n";
             }
         }
     }else if (szuro_opcio == 5) {
@@ -211,12 +211,12 @@ void szures_foglalasok(const vector<Foglalas>& foglalasok) {
         for (const auto& foglalas : foglalasok) {
             if (foglalas.kezd_ido == kezd_ido) {
                 cout << "Foglalas kulcs: " << foglalas.key
-                << ", Tanar: " << foglalas.tanar_neve
-                << ", Tantargy: " << foglalas.tantargy
-                << ", Terem: " << foglalas.terem_szam
-                << ", Nap: " << foglalas.nap
-                << ", Kezdes: " << foglalas.kezd_ido
-                << ", Befejezes: " << foglalas.veg_ido << "\n";
+                     << ", Tanar: " << foglalas.tanar_neve
+                     << ", Tantargy: " << foglalas.tantargy
+                     << ", Terem: " << foglalas.terem_szam
+                     << ", Nap: " << foglalas.nap
+                     << ", Kezdes: " << foglalas.kezd_ido
+                     << ", Befejezes: " << foglalas.veg_ido << "\n";
             }
         }
     }else if (szuro_opcio == 6) {
@@ -226,12 +226,12 @@ void szures_foglalasok(const vector<Foglalas>& foglalasok) {
         for (const auto& foglalas : foglalasok) {
             if (foglalas.veg_ido == veg_ido) {
                 cout << "Foglalas kulcs: " << foglalas.key
-                << ", Tanar: " << foglalas.tanar_neve
-                << ", Tantargy: " << foglalas.tantargy
-                << ", Terem: " << foglalas.terem_szam
-                << ", Nap: " << foglalas.nap
-                << ", Kezdes: " << foglalas.kezd_ido
-                << ", Befejezes: " << foglalas.veg_ido << "\n";
+                     << ", Tanar: " << foglalas.tanar_neve
+                     << ", Tantargy: " << foglalas.tantargy
+                     << ", Terem: " << foglalas.terem_szam
+                     << ", Nap: " << foglalas.nap
+                     << ", Kezdes: " << foglalas.kezd_ido
+                     << ", Befejezes: " << foglalas.veg_ido << "\n";
             }
         }
     }
@@ -239,6 +239,34 @@ void szures_foglalasok(const vector<Foglalas>& foglalasok) {
         cout << "Hibas valasztas.\n";
     }
 }
+
+//Naptari nezet
+void naptari_nezet(const vector<Foglalas>& foglalasok) {
+    const vector<string> napok = {"Hetfo", "Kedd", "Szerda", "Csutortok", "Pentek", "Szombat", "Vasarnap"};
+
+    cout << "\n*** Heti naptari nezet ***\n";
+
+    for (int nap = 1; nap <= 7; ++nap) {
+        cout << "\n" << napok[nap - 1] << ":\n";
+
+        // Óránkénti bontás
+        for (int ora = 0; ora < 24; ++ora) {
+            bool foglalt = false;
+            for (const auto& foglalas : foglalasok) {
+                if (foglalas.nap == nap && foglalas.kezd_ido <= ora && foglalas.veg_ido > ora) {
+                    cout << ora << ":00 - " << (ora + 1) << ":00: "
+                         << foglalas.tantargy << " (" << foglalas.tanar_neve << ", Terem: " << foglalas.terem_szam << ")\n";
+                    foglalt = true;
+                    break;
+                }
+            }
+            if (!foglalt) {
+                cout << ora << ":00 - " << (ora + 1) << ":00: SZABAD\n";
+            }
+        }
+    }
+}
+
 
 int main() {
     vector<Foglalas> foglalasok;
@@ -250,7 +278,9 @@ int main() {
         cout << "2. Foglalasok megjelenitese\n";
         cout << "3. Foglalas torlese\n";
         cout << "4. Foglalas szerkesztese\n";
-        cout << "5. Kilepes\n";
+        cout << "5. Szures\n";
+        cout << "6. Naptari nezet\n";
+        cout << "7. Kilepes\n";
         cout << "Valasz: ";
         cin >> valasz;
 
@@ -268,6 +298,12 @@ int main() {
                 szerkeszt_foglalas(foglalasok);
                 break;
             case 5:
+                szures_foglalasok(foglalasok);
+                break;
+            case 6:
+                naptari_nezet(foglalasok);
+                break;
+            case 7:
                 cout << "Kilepes...\n";
                 return 0;
             default:
