@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from datetime import datetime
 
 
 class Foglalas:
@@ -28,6 +27,7 @@ class TeremFoglaloApp:
 
         # Create tabs
         self.create_uj_foglalas_tab()
+        self.create_listazas_tab()
 
     def create_uj_foglalas_tab(self):
         uj_foglalas_frame = ttk.Frame(self.notebook)
@@ -62,6 +62,37 @@ class TeremFoglaloApp:
         # Submit button
         ttk.Button(uj_foglalas_frame, text="Foglalás hozzáadása",
                    command=self.add_foglalas).grid(row=6, column=0, columnspan=2, pady=20)
+
+    def create_listazas_tab(self):
+        listazas_frame = ttk.Frame(self.notebook)
+        self.notebook.add(listazas_frame, text='Foglalások')
+
+        # Treeview for listings
+        self.tree = ttk.Treeview(listazas_frame,
+                                 columns=('Key', 'Tanár', 'Tantárgy', 'Terem', 'Nap', 'Kezdés', 'Befejezés'),
+                                 show='headings')
+
+        # Define headings
+        self.tree.heading('Key', text='Azonosító')
+        self.tree.heading('Tanár', text='Tanár')
+        self.tree.heading('Tantárgy', text='Tantárgy')
+        self.tree.heading('Terem', text='Terem')
+        self.tree.heading('Nap', text='Nap')
+        self.tree.heading('Kezdés', text='Kezdés')
+        self.tree.heading('Befejezés', text='Befejezés')
+
+        # Column widths
+        for col in ('Key', 'Tanár', 'Tantárgy', 'Terem', 'Nap', 'Kezdés', 'Befejezés'):
+            self.tree.column(col, width=100)
+
+        self.tree.pack(expand=True, fill='both')
+
+        # Buttons frame
+        button_frame = ttk.Frame(listazas_frame)
+        button_frame.pack(fill='x', padx=5, pady=5)
+
+        ttk.Button(button_frame, text="Frissítés",
+                   command=self.refresh_lista).pack(side='left', padx=5)
 
     def add_foglalas(self):
         try:
@@ -105,6 +136,22 @@ class TeremFoglaloApp:
 
         except ValueError:
             messagebox.showerror("Hiba", "Érvénytelen bemenet!")
+
+    def refresh_lista(self):
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        for foglalas in self.foglalasok:
+            napok = ["Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat", "Vasárnap"]
+            self.tree.insert('', 'end', values=(
+                foglalas.key,
+                foglalas.tanar_neve,
+                foglalas.tantargy,
+                foglalas.terem_szam,
+                napok[foglalas.nap - 1],
+                f"{foglalas.kezd_ido}:00",
+                f"{foglalas.veg_ido}:00"
+            ))
 
 def main():
     root = tk.Tk()
